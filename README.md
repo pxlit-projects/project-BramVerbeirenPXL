@@ -1,6 +1,6 @@
 # Fullstack Java Project
 
-## Firstname Lastname (Class)
+## Bram Verbeiren 3AONC
 Change the name and Class in the title above
 
 ## Folder structure
