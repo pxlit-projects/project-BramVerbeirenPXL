@@ -1,0 +1,15 @@
+<header class="header">
+  <h1>Post & Review Systeem</h1>
+  <nav class="navbar">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/posts" routerLinkActive="active">Nieuws</a>
+    <a *ngIf="authService.isEditor()" routerLink="/reviews" routerLinkActive="active">Moderatie</a>
+    <a *ngIf="isLoggedIn; else loginLink" (click)="logout()">Uitloggen</a>
+    <ng-template #loginLink>
+      <a routerLink="/login">Inloggen</a>
+    </ng-template>
+  </nav>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>

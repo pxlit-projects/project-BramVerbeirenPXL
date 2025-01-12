@@ -1,0 +1,7 @@
+<div class="review-actions-container">
+    <h2>Acties voor Review</h2>
+    <button mat-raised-button color="primary" (click)="approve()">Goedkeuren</button>
+    <button mat-raised-button color="warn" (click)="reject()">Afwijzen</button>
+    <textarea [(ngModel)]="rejectionComment" placeholder="Voeg een opmerking toe bij afwijzing"></textarea>
+  </div>
+  

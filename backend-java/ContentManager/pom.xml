@@ -26,6 +26,7 @@
         <module>discovery-service</module>
         <module>review-service</module>
         <module>notification-service</module>
+        <module>comment-service</module>
     </modules>
     <scm>
         <connection/>
@@ -39,6 +40,16 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>be.pxl.services</groupId>
+                <artifactId>review-service</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>be.pxl.services</groupId>
+                        <artifactId>post-service</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -55,6 +66,10 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -69,6 +84,13 @@
             <artifactId>spring-cloud-openfeign-core</artifactId>
             <version>4.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>rabbitmq</artifactId>
+            <version>1.17.6</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

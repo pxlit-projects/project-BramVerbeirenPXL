@@ -1,0 +1,12 @@
+.review-detail-container {
+  padding: 20px;
+}
+
+h1, h2 {
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}

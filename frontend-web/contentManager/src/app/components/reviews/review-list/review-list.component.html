@@ -1,0 +1,34 @@
+<div class="review-list-container">
+  <h2>Pending Reviews</h2>
+  <div *ngIf="reviews.length === 0">
+    <p>Er zijn momenteel geen pending reviews.</p>
+  </div>
+  <div *ngFor="let review of reviews" class="review-card">
+    <h3>{{ review.title }}</h3>
+    <p>{{ review.content }}</p>
+    <p><strong>Auteur:</strong> {{ review.author }}</p>
+    <button class="approve-button" (click)="approveReview(review.id)">Goedkeuren</button>
+    <button class="reject-button" (click)="openRejectModal(review.id)">Afwijzen</button>
+  </div>
+
+  <div class="review-list-container">
+    <h2>Oude Reviews</h2>
+    <div *ngIf="oldReviews.length === 0">
+      <p>Er zijn momenteel geen oude reviews.</p>
+    </div>
+    <div *ngFor="let review of oldReviews" class="review-card">
+      <h3>{{ review.title }}</h3>
+      <p>{{ review.content }}</p>
+      <p><strong>Auteur:</strong> {{ review.author }}</p>
+      <p><strong>Reden:</strong> {{ review.rejectionComment }}</p>
+    </div>
+
+  <div *ngIf="showRejectModal" class="modal">
+    <div class="modal-content">
+      <h3>Reden van afwijzing</h3>
+      <textarea [(ngModel)]="rejectionComment"></textarea>
+      <button class="submit-button" (click)="submitRejection()">Verzend</button>
+      <button class="cancel-button" (click)="closeRejectModal()">Annuleren</button>
+    </div>
+  </div>
+</div>

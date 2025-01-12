@@ -12,5 +12,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificationExecutor<Post> {
     List<Post> findByDraftFalse();
     List<Post> findByApprovedFalse();
-    List<Post> findByApprovedTrue();
+    List<Post> findAllByApprovedTrue();
+    List<Post> findByDraftFalseAndApprovedTrue();
+    List<Post> findByDraftFalseAndApprovedFalse();
 }

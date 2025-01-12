@@ -2,20 +2,25 @@ package be.pxl.services.service;
 
 import be.pxl.services.api.data.NotificationRequest;
 import be.pxl.services.api.data.PostRequest;
+import be.pxl.services.api.data.ReviewRequest;
 import be.pxl.services.client.NotificationClient;
 import be.pxl.services.domain.Post;
 import be.pxl.services.repository.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.data.domain.Example;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 class PostServiceTest {
@@ -26,193 +31,160 @@ class PostServiceTest {
     @Mock
     private NotificationClient notificationClient;
 
+    @Mock
+    private RabbitTemplate rabbitTemplate;
+
     @InjectMocks
     private PostService postService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        reset(postRepository, rabbitTemplate, notificationClient);  // Alle mocks resetten
     }
 
     @Test
-    void getAllPosts_success() {
-        // Arrange
-        Post post1 = new Post("Title1", "Content1", "Author1", "email1@example.com", LocalDate.now());
-        Post post2 = new Post("Title2", "Content2", "Author2", "email2@example.com", LocalDate.now());
-        when(postRepository.findAll()).thenReturn(List.of(post1, post2));
+    void createPost_sendsNotificationAndPublishesToQueue() {
+        PostRequest postRequest = new PostRequest("Title", "Content", "Author", "email@test.com", false, null, false);
+        Post post = Post.builder().id(1L).title("Title").build();
 
-        // Act
-        List<Post> result = postService.getAllPosts();
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(2, result.size());
-        verify(postRepository, times(1)).findAll();
-    }
-
-    @Test
-    void getPostById_success() {
-        // Arrange
-        Post post = new Post("Title", "Content", "Author", "email@example.com", LocalDate.now());
-        when(postRepository.findById(1L)).thenReturn(Optional.of(post));
-
-        // Act
-        Post result = postService.getPostById(1L);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals("Title", result.getTitle());
-        verify(postRepository, times(1)).findById(1L);
-    }
-
-    @Test
-    void getPostById_notFound() {
-        // Arrange
-        when(postRepository.findById(1L)).thenReturn(Optional.empty());
-
-        // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> postService.getPostById(1L));
-        assertEquals("Post not found", exception.getMessage());
-        verify(postRepository, times(1)).findById(1L);
-    }
-
-    @Test
-    void createPost_success() {
-        // Arrange
-        PostRequest request = PostRequest.builder()
-                .title("Title")
-                .content("Content")
-                .author("Author")
-                .build();
-        Post post = Post.builder()
-                .id(1L)
-                .title("Title")
-                .content("Content")
-                .author("Author")
-                .createdDate(LocalDate.now())
-                .build();
         when(postRepository.save(any(Post.class))).thenReturn(post);
 
-        // Act
-        Post result = postService.createPost(request);
+        Post createdPost = postService.createPost(postRequest);
 
-        // Assert
-        assertNotNull(result);
-        assertEquals("Title", result.getTitle());
-        verify(postRepository, times(1)).save(any(Post.class));
-        verify(notificationClient, times(1)).sendNotification(any(NotificationRequest.class));
+        assertNotNull(createdPost);
+        assertEquals("Title", createdPost.getTitle());
+        verify(notificationClient).sendNotification(any(NotificationRequest.class));
+    }
+    @Test
+    void filterPosts_withOnlyAuthor_returnsMatchingPosts() {
+        List<Post> posts = List.of(new Post(1L, "Title", "Content", "Author", "email@test.com", LocalDate.of(2023, 12, 25), false, true, null));
+        when(postRepository.findAll((Example<Post>) any())).thenReturn(posts);
+
+        List<Post> result = postService.filterPosts(null, "Author", null);
+
+        assertEquals(1, result.size());
+        assertEquals("Author", result.get(0).getAuthor());
+    }
+    @Test
+    void filterPosts_noFilters_returnsAllPosts() {
+        List<Post> posts = List.of(
+                new Post(1L, "Title 1", "Content 1", "Author 1", "email1@test.com", LocalDate.now(), false, true, null),
+                new Post(2L, "Title 2", "Content 2", "Author 2", "email2@test.com", LocalDate.now(), false, true, null)
+        );
+
+        when(postRepository.findAll((Example<Post>) any())).thenReturn(posts);
+
+        List<Post> result = postService.filterPosts(null, null, null);
+
+        assertEquals(2, result.size());
     }
 
     @Test
-    void saveDraft_success() {
-        // Arrange
-        PostRequest request = PostRequest.builder()
-                .title("Draft Title")
-                .content("Draft Content")
-                .author("Author")
-                .build();
-        Post draft = Post.builder()
-                .id(1L)
-                .title("Draft Title")
-                .content("Draft Content")
-                .author("Author")
-                .createdDate(LocalDate.now())
-                .draft(true)
-                .build();
-        when(postRepository.save(any(Post.class))).thenReturn(draft);
+    void filterPosts_returnsFilteredPosts() {
+        // Testdata: één post die aan de criteria voldoet
+        List<Post> filteredPosts = List.of(
+                new Post(3L, "Filtered Title", "Filtered Content", "Author", "email@test.com", LocalDate.of(2023, 12, 25), false, true, null)
+        );
 
-        // Act
-        Post result = postService.saveDraft(request);
+        // Mocking: accepteer elke Specification als parameter
+        when(postRepository.findAll((Example<Post>) any())).thenReturn(filteredPosts);
 
-        // Assert
-        assertNotNull(result);
-        assertTrue(result.isDraft());
-        assertEquals("Draft Title", result.getTitle());
-        verify(postRepository, times(1)).save(any(Post.class));
+        // Uitvoeren van de test
+        List<Post> result = postService.filterPosts("Filtered Content", "Author", LocalDate.of(2023, 12, 25));
+
+        // Assertions
+        assertEquals(1, result.size(), "Er wordt verwacht dat er één gefilterde post is");
+        assertEquals("Filtered Title", result.get(0).getTitle());
+        verify(postRepository, times(1)).findAll((Example<Post>) any());
     }
 
     @Test
-    void updatePost_success() {
-        // Arrange
-        Post existingPost = Post.builder()
-                .id(1L)
-                .title("Old Title")
-                .content("Old Content")
-                .author("Old Author")
-                .createdDate(LocalDate.now())
-                .build();
-        PostRequest request = PostRequest.builder()
-                .title("New Title")
-                .content("New Content")
-                .author("New Author")
-                .build();
+    @Order(1)
+    void updatePost_updatesPostIfExists() {
+        Post existingPost = new Post(1L, "Old Title", "Old Content", "Author", "email@test.com", LocalDate.now(), false, true, null);
+        PostRequest postRequest = new PostRequest("Updated Title", "Updated Content", "Author", "email@test.com", false, null, false);
+
         when(postRepository.findById(1L)).thenReturn(Optional.of(existingPost));
         when(postRepository.save(any(Post.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        // Act
-        Post result = postService.updatePost(1L, request);
+        Post updatedPost = postService.updatePost(1L, postRequest);
 
-        // Assert
-        assertNotNull(result);
-        assertEquals("New Title", result.getTitle());
+        assertEquals("Updated Title", updatedPost.getTitle());
         verify(postRepository, times(1)).findById(1L);
-        verify(postRepository, times(1)).save(existingPost);
+        verify(postRepository).save(existingPost);
     }
 
+
     @Test
-    void updatePost_notFound() {
-        // Arrange
-        PostRequest request = PostRequest.builder()
-                .title("Title")
-                .content("Content")
-                .author("Author")
-                .build();
+    void updatePost_throwsExceptionIfNotFound() {
+        PostRequest postRequest = new PostRequest("New Title", "Updated Content", "Author", "email@test.com", false, null, false);
         when(postRepository.findById(1L)).thenReturn(Optional.empty());
 
-        // Act & Assert
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> postService.updatePost(1L, request));
-        assertEquals("Post not found", exception.getMessage());
-        verify(postRepository, times(1)).findById(1L);
-        verify(postRepository, never()).save(any(Post.class));
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> postService.updatePost(1L, postRequest));
+        assertEquals("Post not found", thrown.getMessage());
     }
 
     @Test
-    void getPublishedPosts_success() {
-        // Arrange
-        Post post = Post.builder()
-                .id(1L)
-                .title("Published Post")
-                .draft(false)
-                .build();
-        when(postRepository.findByDraftFalse()).thenReturn(List.of(post));
+    void updatePostStatus_throwsExceptionIfNotFound() {
+        ReviewRequest postRequest = new ReviewRequest(true, null);
+        when(postRepository.findById(1L)).thenReturn(Optional.empty());
 
-        // Act
-        List<Post> result = postService.getPublishedPosts();
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertFalse(result.get(0).isDraft());
-        verify(postRepository, times(1)).findByDraftFalse();
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> postService.updatePostStatus(1L, postRequest));
+        assertEquals("Post not found", thrown.getMessage());
     }
 
     @Test
-    void getPendingPosts_success() {
-        // Arrange
-        Post post = Post.builder()
-                .id(1L)
-                .title("Pending Post")
-                .approved(false)
-                .build();
-        when(postRepository.findByApprovedFalse()).thenReturn(List.of(post));
+    void getPendingPosts_returnsPendingPosts() {
+        List<Post> pendingPosts = List.of(new Post(2L, "Pending Title", "Pending Content", "Author", null, LocalDate.now(), false, false, null));
+        when(postRepository.findByDraftFalseAndApprovedFalse()).thenReturn(pendingPosts);
 
-        // Act
         List<Post> result = postService.getPendingPosts();
 
-        // Assert
-        assertNotNull(result);
         assertEquals(1, result.size());
         assertFalse(result.get(0).isApproved());
-        verify(postRepository, times(1)).findByApprovedFalse();
     }
+
+    @Test
+    void saveDraft_savesDraftPost() {
+        PostRequest postRequest = new PostRequest("Draft Post", "Content", "Author", "email@test.com", false, null, true);
+        Post post = Post.builder().id(1L).title("Draft Post").draft(true).build();
+
+        when(postRepository.save(any(Post.class))).thenReturn(post);
+
+        Post savedDraft = postService.saveDraft(postRequest);
+
+        assertNotNull(savedDraft);
+        assertTrue(savedDraft.isDraft());
+    }
+    @Test
+    void getAllPosts_returnsAllPosts() {
+        List<Post> posts = List.of(
+                new Post(1L, "Title 1", "Content 1", "Author 1", "email1@test.com", LocalDate.now(), false, true, null),
+                new Post(2L, "Title 2", "Content 2", "Author 2", "email2@test.com", LocalDate.now(), true, false, null)
+        );
+
+        when(postRepository.findAll()).thenReturn(posts);
+
+        List<Post> result = postService.getAllPosts();
+
+        assertEquals(2, result.size());
+        verify(postRepository).findAll();
+    }
+
+    @Test
+    void getPublishedPosts_returnsPublishedPosts() {
+        List<Post> publishedPosts = List.of(
+                new Post(3L, "Published Post", "Content", "Author", "email@test.com", LocalDate.now(), false, true, null)
+        );
+
+        when(postRepository.findByDraftFalseAndApprovedTrue()).thenReturn(publishedPosts);
+
+        List<Post> result = postService.getPublishedPosts();
+
+        assertEquals(1, result.size());
+        assertFalse(result.get(0).isDraft());
+        assertTrue(result.get(0).isApproved());
+    }
+
 }

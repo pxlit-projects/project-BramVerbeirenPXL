@@ -1,15 +1,11 @@
 package be.pxl.services.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class Notification {
 
@@ -18,9 +14,6 @@ public class Notification {
     private String to;
     private String subject;
     private String message;
-
-    public Notification() {
-    }
 
     public String getSender() {
         return sender;

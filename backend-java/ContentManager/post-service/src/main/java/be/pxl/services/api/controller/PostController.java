@@ -1,6 +1,7 @@
 package be.pxl.services.api.controller;
 
 import be.pxl.services.api.data.PostRequest;
+import be.pxl.services.api.data.ReviewRequest;
 import be.pxl.services.domain.Post;
 import be.pxl.services.service.IPostService;
 import jakarta.validation.Valid;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/posts")
 @RequiredArgsConstructor
 public class PostController {
@@ -37,6 +39,9 @@ public class PostController {
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPostById(@PathVariable Long id) {
         Post post = postService.getPostById(id);
+        if (post == null) {
+            return ResponseEntity.status(404).build();
+        }
         return ResponseEntity.ok(post);
     }
 
@@ -55,7 +60,15 @@ public class PostController {
     @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody @Valid PostRequest postRequest) {
         Post updatedPost = postService.updatePost(id, postRequest);
+        if (updatedPost == null) {
+            return ResponseEntity.status(404).build(); // Return NOT_FOUND als de post niet bestaat
+        }
         return ResponseEntity.ok(updatedPost);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Post> deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping("/pending")
@@ -77,5 +90,13 @@ public class PostController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(filteredPosts);
+    }
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Post> updatePostStatus(@PathVariable Long id, @RequestBody @Valid ReviewRequest reviewRequest) {
+        Post updatedPost = postService.updatePostStatus(id, reviewRequest);
+        if (updatedPost == null) {
+            return ResponseEntity.status(404).build();
+        }
+        return ResponseEntity.ok(updatedPost);
     }
 }

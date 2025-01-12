@@ -1,0 +1,30 @@
+<div class="login-container">
+  <h2>Inloggen</h2>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="username">Gebruikersnaam</label>
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="username"
+        #usernameInput="ngModel"
+        required
+      />
+      <div name="error-message" class="error-message" *ngIf="usernameInput.invalid && usernameInput.touched">
+        Gebruikersnaam is verplicht.
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label for="role">Rol</label>
+      <select name="role" [(ngModel)]="role" required>
+        <option value="user">Gebruiker</option>
+        <option value="editor">Redacteur</option>
+      </select>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Inloggen</button>
+  </form>
+  
+</div>

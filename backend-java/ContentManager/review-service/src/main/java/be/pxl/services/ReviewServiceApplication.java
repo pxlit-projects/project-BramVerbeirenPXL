@@ -10,8 +10,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class ReviewServiceApplication {
 
-	public static void main(String[] args) {
+	public static void main( String[] args )
+	{
 		SpringApplication.run(ReviewServiceApplication.class, args);
 	}
-
 }

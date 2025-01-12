@@ -1,26 +1,26 @@
 package be.pxl.services.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name="review")
+@Table(name = "review")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Review {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Setter
+    @Getter
     private Long postId;
-    private String status; // Approved / Rejected
-    private String comment;
+    @Setter
+    @Getter
+    private boolean approved;
+    @Setter
+    @Getter
+    private String rejectionComment;
 }
