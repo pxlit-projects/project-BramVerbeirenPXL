@@ -1,0 +1,37 @@
+:host {
+    display: block;
+    text-align: center;
+  }
+body  {
+  height: 100vh;
+}
+.header {
+  background-color: #007bff;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+  
+  main {
+    padding: 20px;
+  }
+  .navbar {
+    margin-top: 10px;
+  }
+  
+  .navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  .navbar a.active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  

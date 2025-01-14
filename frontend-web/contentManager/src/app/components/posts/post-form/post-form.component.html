@@ -1,0 +1,37 @@
+<div class="post-form-page">
+  <div class="back-button-container">
+    <a class="back-button" routerLink="/posts">← Terug naar lijst</a>
+  </div>
+
+  <div class="post-form-container">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <h2>Nieuwe Post Aanmaken</h2>
+
+      <label for="title">Titel</label>
+      <input id="title" formControlName="title" type="text" placeholder="Geef een titel">
+      <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+        <small class="error">Titel is verplicht.</small>
+      </div>
+
+      <label for="content">Inhoud</label>
+      <textarea id="content" formControlName="content" placeholder="Geef de inhoud van de post"></textarea>
+      <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched">
+        <small class="error">Inhoud is verplicht.</small>
+      </div>
+
+      <label for="author">Auteur</label>
+      <input id="author" formControlName="author" type="text" placeholder="Naam van de auteur">
+
+      <label for="authorEmail">Email</label>
+      <input id="authorEmail" formControlName="authorEmail" type="email" placeholder="E-mailadres van de auteur">
+      <div *ngIf="postForm.get('authorEmail')?.invalid && postForm.get('authorEmail')?.touched">
+        <small class="error">Voer een geldig e-mailadres in.</small>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="postForm.invalid">Publiceren</button>
+        <button type="button" (click)="saveAsDraft()">Opslaan als concept</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="review-detail-container">
+    <h1>Review Details</h1>
+    <div *ngIf="review">
+      <h2>{{ review.title }}</h2>
+      <p>{{ review.content }}</p>
+      <p><strong>Auteur:</strong> {{ review.author }}</p>
+      <p *ngIf="review.rejectionComment">
+        <strong>Afwijzingsopmerking:</strong> {{ review.rejectionComment }}
+      </p>
+      <button mat-raised-button color="primary" routerLink="/reviews">Terug naar overzicht</button>
+    </div>
+    <div *ngIf="!review">
+      <p>Geen reviewdetails gevonden.</p>
+    </div>
+  </div>
+  

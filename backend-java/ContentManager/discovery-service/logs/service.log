@@ -1,0 +1,154 @@
+2025-01-12 16:56:30,681 INFO  [main] DiscoveryServiceApplicationTest - Starting DiscoveryServiceApplicationTest using Java 21.0.5 with PID 35704 (started by Bram in C:\Users\andor\source\repos\JavaFullStack\project-BramVerbeirenPXL\backend-java\ContentManager\discovery-service)
+2025-01-12 16:56:30,684 INFO  [main] DiscoveryServiceApplicationTest - No active profile set, falling back to 1 default profile: "default"
+2025-01-12 16:56:31,920 INFO  [main] GenericScope - BeanFactory id=a7c02464-0e0a-3803-8694-534a8642625f
+2025-01-12 16:56:32,028 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-01-12 16:56:32,031 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-01-12 16:56:33,278 WARN  [main] LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-12 16:56:33,557 INFO  [main] InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-01-12 16:56:33,591 INFO  [main] DiscoveryClient - Initializing Eureka in region us-east-1
+2025-01-12 16:56:33,593 INFO  [main] DiscoveryClient - Client configured to neither register nor query for data.
+2025-01-12 16:56:33,595 INFO  [main] DiscoveryClient - Discovery Client initialized at timestamp 1736697393593 with initial instances count: 0
+2025-01-12 16:56:33,664 INFO  [main] DefaultEurekaServerContext - Initializing ...
+2025-01-12 16:56:33,667 WARN  [main] PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-12 16:56:33,680 INFO  [main] AbstractInstanceRegistry - Finished initializing remote region registries. All known remote regions: []
+2025-01-12 16:56:33,680 INFO  [main] DefaultEurekaServerContext - Initialized
+2025-01-12 16:56:33,817 INFO  [main] EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-12 16:56:33,882 INFO  [main] EurekaServiceRegistry - Registering application UNKNOWN with eureka with status UP
+2025-01-12 16:56:33,898 INFO  [Thread-11] EurekaServerBootstrap - isAws returned false
+2025-01-12 16:56:33,898 INFO  [main] DiscoveryServiceApplicationTest - Started DiscoveryServiceApplicationTest in 3.771 seconds (process running for 5.436)
+2025-01-12 16:56:33,898 INFO  [Thread-11] EurekaServerBootstrap - Initialized server context
+2025-01-12 16:56:33,898 INFO  [Thread-11] PeerAwareInstanceRegistryImpl - Got 1 instances from neighboring DS node
+2025-01-12 16:56:33,898 INFO  [Thread-11] PeerAwareInstanceRegistryImpl - Renew threshold is: 1
+2025-01-12 16:56:33,898 INFO  [Thread-11] PeerAwareInstanceRegistryImpl - Changing status to UP
+2025-01-12 16:56:33,901 INFO  [Thread-11] EurekaServerInitializerConfiguration - Started Eureka Server
+2025-01-12 16:56:34,897 INFO  [main] DiscoveryServiceApplication - Starting DiscoveryServiceApplication using Java 21.0.5 with PID 35704 (started by Bram in C:\Users\andor\source\repos\JavaFullStack\project-BramVerbeirenPXL\backend-java\ContentManager\discovery-service)
+2025-01-12 16:56:34,898 INFO  [main] DiscoveryServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-12 16:56:35,117 INFO  [main] GenericScope - BeanFactory id=10f5854c-a84e-3402-ad0c-b02e709321d2
+2025-01-12 16:56:35,124 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-01-12 16:56:35,125 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-01-12 16:56:35,265 INFO  [main] TomcatWebServer - Tomcat initialized with port 8061 (http)
+2025-01-12 16:56:35,279 INFO  [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8061"]
+2025-01-12 16:56:35,283 INFO  [main] StandardService - Starting service [Tomcat]
+2025-01-12 16:56:35,283 INFO  [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-12 16:56:35,358 INFO  [main] [/] - Initializing Spring embedded WebApplicationContext
+2025-01-12 16:56:35,360 INFO  [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 459 ms
+2025-01-12 16:56:36,008 INFO  [main] DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2025-01-12 16:56:36,008 INFO  [main] DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2025-01-12 16:56:36,008 INFO  [main] DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2025-01-12 16:56:36,008 INFO  [main] DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2025-01-12 16:56:36,198 WARN  [main] LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-12 16:56:36,200 INFO  [main] InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-01-12 16:56:36,201 INFO  [main] DiscoveryClient - Initializing Eureka in region us-east-1
+2025-01-12 16:56:36,201 INFO  [main] DiscoveryClient - Client configured to neither register nor query for data.
+2025-01-12 16:56:36,201 INFO  [main] DiscoveryClient - Discovery Client initialized at timestamp 1736697396201 with initial instances count: 0
+2025-01-12 16:56:36,204 INFO  [main] DefaultEurekaServerContext - Initializing ...
+2025-01-12 16:56:36,204 WARN  [main] PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-12 16:56:36,204 INFO  [main] AbstractInstanceRegistry - Finished initializing remote region registries. All known remote regions: []
+2025-01-12 16:56:36,204 INFO  [main] DefaultEurekaServerContext - Initialized
+2025-01-12 16:56:36,210 INFO  [main] EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-12 16:56:36,220 INFO  [main] EurekaServiceRegistry - Registering application UNKNOWN with eureka with status UP
+2025-01-12 16:56:36,221 INFO  [Thread-21] EurekaServerBootstrap - isAws returned false
+2025-01-12 16:56:36,221 INFO  [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8061"]
+2025-01-12 16:56:36,221 INFO  [Thread-21] EurekaServerBootstrap - Initialized server context
+2025-01-12 16:56:36,221 INFO  [Thread-21] PeerAwareInstanceRegistryImpl - Got 1 instances from neighboring DS node
+2025-01-12 16:56:36,221 INFO  [Thread-21] PeerAwareInstanceRegistryImpl - Renew threshold is: 1
+2025-01-12 16:56:36,221 INFO  [Thread-21] PeerAwareInstanceRegistryImpl - Changing status to UP
+2025-01-12 16:56:36,221 INFO  [Thread-21] EurekaServerInitializerConfiguration - Started Eureka Server
+2025-01-12 16:56:36,246 INFO  [main] TomcatWebServer - Tomcat started on port 8061 (http) with context path '/'
+2025-01-12 16:56:36,247 INFO  [main] EurekaAutoServiceRegistration - Updating port to 8061
+2025-01-12 16:56:36,258 INFO  [main] DiscoveryServiceApplication - Started DiscoveryServiceApplication in 1.393 seconds (process running for 7.797)
+2025-01-12 16:56:36,297 INFO  [SpringApplicationShutdownHook] EurekaServiceRegistry - Unregistering application UNKNOWN with eureka with status DOWN
+2025-01-12 16:56:36,299 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Shutting down Eureka Server..
+2025-01-12 16:56:36,299 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 16:56:36,299 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 16:56:36,299 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Eureka Service is now shutdown...
+2025-01-12 16:56:36,299 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 16:56:36,301 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 16:56:36,303 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Shutting down DiscoveryClient ...
+2025-01-12 16:56:36,303 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Completed shut down of DiscoveryClient
+2025-01-12 16:56:36,305 INFO  [SpringApplicationShutdownHook] EurekaServiceRegistry - Unregistering application UNKNOWN with eureka with status DOWN
+2025-01-12 16:56:36,312 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Shutting down Eureka Server..
+2025-01-12 16:56:36,312 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 16:56:36,312 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 16:56:36,312 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Eureka Service is now shutdown...
+2025-01-12 16:56:36,312 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 16:56:36,312 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 16:56:36,314 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Shutting down DiscoveryClient ...
+2025-01-12 16:56:36,314 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Completed shut down of DiscoveryClient
+2025-01-12 17:09:00,258 INFO  [main] DiscoveryServiceApplicationTest - Starting DiscoveryServiceApplicationTest using Java 21.0.5 with PID 60744 (started by Bram in C:\Users\andor\source\repos\JavaFullStack\project-BramVerbeirenPXL\backend-java\ContentManager\discovery-service)
+2025-01-12 17:09:00,260 INFO  [main] DiscoveryServiceApplicationTest - No active profile set, falling back to 1 default profile: "default"
+2025-01-12 17:09:01,450 INFO  [main] GenericScope - BeanFactory id=a7c02464-0e0a-3803-8694-534a8642625f
+2025-01-12 17:09:01,549 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-01-12 17:09:01,551 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-01-12 17:09:02,854 WARN  [main] LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-12 17:09:03,135 INFO  [main] InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-01-12 17:09:03,163 INFO  [main] DiscoveryClient - Initializing Eureka in region us-east-1
+2025-01-12 17:09:03,165 INFO  [main] DiscoveryClient - Client configured to neither register nor query for data.
+2025-01-12 17:09:03,167 INFO  [main] DiscoveryClient - Discovery Client initialized at timestamp 1736698143166 with initial instances count: 0
+2025-01-12 17:09:03,237 INFO  [main] DefaultEurekaServerContext - Initializing ...
+2025-01-12 17:09:03,239 WARN  [main] PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-12 17:09:03,253 INFO  [main] AbstractInstanceRegistry - Finished initializing remote region registries. All known remote regions: []
+2025-01-12 17:09:03,253 INFO  [main] DefaultEurekaServerContext - Initialized
+2025-01-12 17:09:03,394 INFO  [main] EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-12 17:09:03,452 INFO  [main] EurekaServiceRegistry - Registering application UNKNOWN with eureka with status UP
+2025-01-12 17:09:03,464 INFO  [main] DiscoveryServiceApplicationTest - Started DiscoveryServiceApplicationTest in 3.775 seconds (process running for 5.431)
+2025-01-12 17:09:03,465 INFO  [Thread-11] EurekaServerBootstrap - isAws returned false
+2025-01-12 17:09:03,465 INFO  [Thread-11] EurekaServerBootstrap - Initialized server context
+2025-01-12 17:09:03,465 INFO  [Thread-11] PeerAwareInstanceRegistryImpl - Got 1 instances from neighboring DS node
+2025-01-12 17:09:03,465 INFO  [Thread-11] PeerAwareInstanceRegistryImpl - Renew threshold is: 1
+2025-01-12 17:09:03,465 INFO  [Thread-11] PeerAwareInstanceRegistryImpl - Changing status to UP
+2025-01-12 17:09:03,468 INFO  [Thread-11] EurekaServerInitializerConfiguration - Started Eureka Server
+2025-01-12 17:09:04,419 INFO  [main] DiscoveryServiceApplication - Starting DiscoveryServiceApplication using Java 21.0.5 with PID 60744 (started by Bram in C:\Users\andor\source\repos\JavaFullStack\project-BramVerbeirenPXL\backend-java\ContentManager\discovery-service)
+2025-01-12 17:09:04,419 INFO  [main] DiscoveryServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-12 17:09:04,637 INFO  [main] GenericScope - BeanFactory id=10f5854c-a84e-3402-ad0c-b02e709321d2
+2025-01-12 17:09:04,643 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2025-01-12 17:09:04,644 WARN  [main] PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2025-01-12 17:09:04,783 INFO  [main] TomcatWebServer - Tomcat initialized with port 8061 (http)
+2025-01-12 17:09:04,796 INFO  [main] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8061"]
+2025-01-12 17:09:04,799 INFO  [main] StandardService - Starting service [Tomcat]
+2025-01-12 17:09:04,799 INFO  [main] StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2025-01-12 17:09:04,874 INFO  [main] [/] - Initializing Spring embedded WebApplicationContext
+2025-01-12 17:09:04,874 INFO  [main] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 454 ms
+2025-01-12 17:09:05,527 INFO  [main] DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2025-01-12 17:09:05,527 INFO  [main] DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2025-01-12 17:09:05,527 INFO  [main] DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2025-01-12 17:09:05,527 INFO  [main] DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2025-01-12 17:09:05,723 WARN  [main] LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-01-12 17:09:05,724 INFO  [main] InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-01-12 17:09:05,726 INFO  [main] DiscoveryClient - Initializing Eureka in region us-east-1
+2025-01-12 17:09:05,726 INFO  [main] DiscoveryClient - Client configured to neither register nor query for data.
+2025-01-12 17:09:05,726 INFO  [main] DiscoveryClient - Discovery Client initialized at timestamp 1736698145726 with initial instances count: 0
+2025-01-12 17:09:05,727 INFO  [main] DefaultEurekaServerContext - Initializing ...
+2025-01-12 17:09:05,727 WARN  [main] PeerEurekaNodes - The replica size seems to be empty. Check the route 53 DNS Registry
+2025-01-12 17:09:05,727 INFO  [main] AbstractInstanceRegistry - Finished initializing remote region registries. All known remote regions: []
+2025-01-12 17:09:05,727 INFO  [main] DefaultEurekaServerContext - Initialized
+2025-01-12 17:09:05,733 INFO  [main] EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-12 17:09:05,743 INFO  [main] EurekaServiceRegistry - Registering application UNKNOWN with eureka with status UP
+2025-01-12 17:09:05,744 INFO  [Thread-21] EurekaServerBootstrap - isAws returned false
+2025-01-12 17:09:05,744 INFO  [Thread-21] EurekaServerBootstrap - Initialized server context
+2025-01-12 17:09:05,744 INFO  [Thread-21] PeerAwareInstanceRegistryImpl - Got 1 instances from neighboring DS node
+2025-01-12 17:09:05,744 INFO  [Thread-21] PeerAwareInstanceRegistryImpl - Renew threshold is: 1
+2025-01-12 17:09:05,744 INFO  [main] Http11NioProtocol - Starting ProtocolHandler ["http-nio-8061"]
+2025-01-12 17:09:05,744 INFO  [Thread-21] PeerAwareInstanceRegistryImpl - Changing status to UP
+2025-01-12 17:09:05,744 INFO  [Thread-21] EurekaServerInitializerConfiguration - Started Eureka Server
+2025-01-12 17:09:05,769 INFO  [main] TomcatWebServer - Tomcat started on port 8061 (http) with context path '/'
+2025-01-12 17:09:05,771 INFO  [main] EurekaAutoServiceRegistration - Updating port to 8061
+2025-01-12 17:09:05,780 INFO  [main] DiscoveryServiceApplication - Started DiscoveryServiceApplication in 1.394 seconds (process running for 7.748)
+2025-01-12 17:09:05,819 INFO  [SpringApplicationShutdownHook] EurekaServiceRegistry - Unregistering application UNKNOWN with eureka with status DOWN
+2025-01-12 17:09:05,823 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Shutting down Eureka Server..
+2025-01-12 17:09:05,823 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 17:09:05,823 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 17:09:05,823 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Eureka Service is now shutdown...
+2025-01-12 17:09:05,823 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 17:09:05,823 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 17:09:05,828 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Shutting down DiscoveryClient ...
+2025-01-12 17:09:05,828 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Completed shut down of DiscoveryClient
+2025-01-12 17:09:05,828 INFO  [SpringApplicationShutdownHook] EurekaServiceRegistry - Unregistering application UNKNOWN with eureka with status DOWN
+2025-01-12 17:09:05,835 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Shutting down Eureka Server..
+2025-01-12 17:09:05,835 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 17:09:05,837 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 17:09:05,837 INFO  [SpringApplicationShutdownHook] EurekaServerBootstrap - Eureka Service is now shutdown...
+2025-01-12 17:09:05,837 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shutting down ...
+2025-01-12 17:09:05,837 INFO  [SpringApplicationShutdownHook] DefaultEurekaServerContext - Shut down
+2025-01-12 17:09:05,838 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Shutting down DiscoveryClient ...
+2025-01-12 17:09:05,838 INFO  [SpringApplicationShutdownHook] DiscoveryClient - Completed shut down of DiscoveryClient

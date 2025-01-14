@@ -1,0 +1,15 @@
+.review-list-container {
+  padding: 20px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background-color: #fefefe;
+}
+
+button {
+  margin-right: 10px;
+}

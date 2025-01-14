@@ -1,0 +1,45 @@
+<div class="post-detail-page">
+  <div class="back-button-container">
+    <a class="back-button" routerLink="/posts">← Terug naar lijst</a>
+  </div>
+
+  <div *ngIf="postForm" class="post-detail-container">
+    <form [formGroup]="postForm" (ngSubmit)="saveChanges()">
+      <h2>Bewerk Post</h2>
+
+      <label for="title">Titel</label>
+      <input id="title" formControlName="title" type="text">
+      <div *ngIf="postForm.get('title')?.invalid && postForm.get('title')?.touched">
+        <small class="error">Titel is verplicht</small>
+      </div>
+
+      <label for="content">Inhoud</label>
+      <textarea id="content" formControlName="content"></textarea>
+      <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched">
+        <small class="error">Inhoud is verplicht</small>
+      </div>
+
+      <label for="author">Auteur</label>
+      <input id="author" formControlName="author" type="text">
+
+      <label for="authorEmail">Email</label>
+      <input id="authorEmail" formControlName="authorEmail" type="email">
+      <div *ngIf="postForm.get('authorEmail')?.invalid && postForm.get('authorEmail')?.touched">
+        <small class="error">Voer een geldig e-mailadres in</small>
+      </div>
+
+      <div class="actions" *ngIf="authService.isEditor()">
+        <button type="submit" [disabled]="postForm.invalid">
+          <fa-icon [icon]="faCheck"></fa-icon> Opslaan
+        </button>
+        <button *ngIf="post?.draft === true" type="button" (click)="publishPost()" class="secondary">
+          <fa-icon [icon]="faPaperPlane"></fa-icon> Publiceer Post
+        </button>
+        <button type="button" (click)="deletePost()" class="danger">
+          <fa-icon [icon]="faTrash"></fa-icon> Verwijder Post
+        </button>
+      </div>
+    </form>
+    <app-comment-section *ngIf="postId !== null" [postId]="postId"></app-comment-section>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="comment-section">
+  <h3>Reacties</h3>
+
+  <!-- Comments list -->
+  <div *ngFor="let comment of comments" class="comment-card">
+    <div class="comment-avatar"></div>
+    <div class="comment-content">
+      <div class="comment-header">
+        <span class="comment-author">{{ comment.author }}</span>
+        <span class="comment-date">{{ comment.createdDate | date: 'short' }}</span>
+      </div>
+
+      <!-- Inline edit input or static text -->
+      <div *ngIf="editingComment?.id === comment.id; else showCommentBody">
+        <textarea [(ngModel)]="editedContent" class="edit-comment-input"></textarea>
+        <div class="edit-actions">
+          <button (click)="saveEdit(comment)">Opslaan</button>
+          <button (click)="cancelEdit()">Annuleren</button>
+        </div>
+      </div>
+      <ng-template #showCommentBody>
+        <div class="comment-body">{{ comment.content }}</div>
+      </ng-template>
+
+      <div *ngIf="isCurrentUser(comment.author)" class="comment-actions">
+        <button (click)="startEditComment(comment)">
+          <fa-icon [icon]="faEdit"></fa-icon> Bewerken
+        </button>
+        <button (click)="deleteComment(comment.id)" class="danger">
+          <fa-icon [icon]="faTrashAlt"></fa-icon> Verwijderen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-comment">
+    <textarea [(ngModel)]="newCommentContent" placeholder="Schrijf je reactie..."></textarea>
+    <button (click)="addComment()">Plaatsen</button>
+  </div>
+</div>

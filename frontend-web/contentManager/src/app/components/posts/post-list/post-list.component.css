@@ -1,0 +1,149 @@
+.post-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.post-card {
+  display: flex;
+  max-width: 320px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.post-content {
+  flex-grow: 1;
+}
+
+.post-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+  color: #222;
+}
+
+.post-content p {
+  margin: 5px 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.date {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 10px;
+}
+
+.view-button {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #5a6268;
+}
+
+.draft {
+  border: 1px dashed #aaa;
+}
+
+.create-button {
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.create-button:hover {
+  background-color: #005bb5;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.create-button span {
+  font-size: 1.2rem;
+}
+
+.create-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+.post-grid.single-card {
+  grid-template-columns: 1fr; /* Zorg dat er maar één kolom is voor één kaart */
+  place-items: center; /* Plaatst de enige kaart gecentreerd */
+}
+
+.post-list-header {
+  display: flex;
+  justify-content: flex-end; /* Zorgt dat de knop rechts staat */
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filter-input, .filter-date {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 250px;
+}
+
+.filter-input:focus, .filter-date:focus {
+  outline: none;
+  border-color: #0073e6;
+  box-shadow: 0 4px 8px rgba(0, 115, 230, 0.2);
+}
+
+.create-button {
+  margin-left: auto;
+}

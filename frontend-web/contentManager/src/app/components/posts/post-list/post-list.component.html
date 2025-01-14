@@ -1,0 +1,35 @@
+<div class="post-list-header">
+  <div class="filters">
+    <input type="text" class="filter-input" placeholder="Zoek op titel of auteur..." [(ngModel)]="filterText" (input)="filterPosts()" />
+    <input type="date" class="filter-date" [(ngModel)]="filterDate" (change)="filterPosts()" />
+  </div>
+  <button routerLink="/posts/new" class="create-button" *ngIf="authService.isEditor()">
+    <span>+</span> Nieuwe post aanmaken
+  </button>
+</div>
+
+<div class="post-list-container">
+  <h2 class="section-title">Gepubliceerde Posts</h2>
+  <div [ngClass]="{'post-grid': true, 'single-card': filteredPublishedPosts.length === 1}">
+    <div *ngFor="let post of filteredPublishedPosts" class="post-card">
+      <div class="post-content">
+        <h3>{{ post.title }}</h3>
+        <p><strong>Auteur:</strong> {{ post.author }}</p>
+        <p class="date"><strong>Gepubliceerd op:</strong> {{ post?.createdDate | date: 'short' }}</p>
+        <button class="view-button" routerLink="/posts/{{ post.id }}">Details bekijken</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title" *ngIf="authService.isEditor()">Concepten en Wachtende Posts</h2>
+  <div [ngClass]="{'post-grid': true, 'single-card': filteredDraftPosts.length === 1}">
+    <div *ngFor="let post of filteredDraftPosts" class="post-card draft">
+      <div class="post-content">
+        <h3>{{ post.title }} <span *ngIf="post.draft">(Concept)</span></h3>
+        <p><strong>Auteur:</strong> {{ post.author }}</p>
+        <p class="date"><strong>Geüpdatet op:</strong> {{ post?.createdDate | date: 'short' }}</p>
+        <button class="view-button" routerLink="/posts/{{ post.id }}">Details bekijken</button>
+      </div>
+    </div>
+  </div>
+</div>
