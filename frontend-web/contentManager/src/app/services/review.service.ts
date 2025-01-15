@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReviewService {
-  private baseUrl = 'http://localhost:8082/api/reviews';
+  private baseUrl = 'http://localhost:8085/review/api/reviews';
 
   constructor(private http: HttpClient) {}
 

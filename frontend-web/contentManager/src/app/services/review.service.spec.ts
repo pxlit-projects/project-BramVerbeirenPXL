@@ -30,7 +30,7 @@ describe('ReviewService', () => {
       expect(reviews).toEqual(mockPendingReviews);
     });
 
-    const req = httpMock.expectOne('http://localhost:8082/api/reviews/pending');
+    const req = httpMock.expectOne('http://localhost:8085/review/api/reviews/pending');
     expect(req.request.method).toBe('GET');
     req.flush(mockPendingReviews);
   });
@@ -42,7 +42,7 @@ describe('ReviewService', () => {
       expect(response).toEqual(Object({  })); // Controleer op een leeg object
     });
   
-    const req = httpMock.expectOne('http://localhost:8082/api/reviews/1/approve');
+    const req = httpMock.expectOne('http://localhost:8085/review/api/reviews/1/approve');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(data);
     req.flush({}); // Stuur een leeg object als respons
@@ -55,7 +55,7 @@ describe('ReviewService', () => {
       expect(response).toEqual(Object({  })); // Controleer op een leeg object
     });
   
-    const req = httpMock.expectOne('http://localhost:8082/api/reviews/1/reject');
+    const req = httpMock.expectOne('http://localhost:8085/review/api/reviews/1/reject');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(data);
     req.flush({}); // Stuur een leeg object als respons

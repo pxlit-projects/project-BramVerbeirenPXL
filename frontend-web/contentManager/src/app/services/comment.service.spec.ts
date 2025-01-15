@@ -31,7 +31,7 @@ describe('CommentService', () => {
       expect(comments).toEqual(mockComments);
     });
 
-    const req = httpMock.expectOne('http://localhost:8083/api/comments/1');
+    const req = httpMock.expectOne('http://localhost:8085/comment/api/comments/1');
     expect(req.request.method).toBe('GET');
     req.flush(mockComments);
   });

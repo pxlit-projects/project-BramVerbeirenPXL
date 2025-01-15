@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -38,11 +39,12 @@ public class ReviewService implements IReviewService {
                 .approved(true)
                 .build();
         reviewRepository.save(review);
+        var post = postClient.getPostById(postId).getBody();
         NotificationRequest notificationRequest = NotificationRequest.builder()
                 .sender("Review Service")
-                .to("author@example.com")
+                .to(Objects.requireNonNull(post).getAuthorEmail())
                 .subject("Post goedgekeurd!")
-                .message("Je post met ID " + postId + " is goedgekeurd.")
+                .message("Je post met titel " + post.getTitle() + " is goedgekeurd.")
                 .build();
         notificationClient.sendNotification(notificationRequest);
         return review;
@@ -68,7 +70,7 @@ public class ReviewService implements IReviewService {
         // Verstuur notificatie bij afwijzing
         NotificationRequest notificationRequest = NotificationRequest.builder()
                 .sender("Review Service")
-                .to("author@example.com")  // Simulatie van auteur-email
+                .to(Objects.requireNonNull(postClient.getPostById(postId).getBody()).getAuthorEmail())  // Simulatie van auteur-email
                 .subject("Post afgewezen")
                 .message("Je post met ID " + postId + " is afgewezen. Opmerking: " + reviewRequest.getRejectionComment())
                 .build();

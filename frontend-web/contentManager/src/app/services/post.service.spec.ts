@@ -31,7 +31,7 @@ describe('PostService', () => {
       expect(posts).toEqual(mockPosts);
     });
 
-    const req = httpMock.expectOne('http://localhost:8081/api/posts');
+    const req = httpMock.expectOne('http://localhost:8085/post/api/posts');
     expect(req.request.method).toBe('GET');
     req.flush(mockPosts);
   });
@@ -43,7 +43,7 @@ describe('PostService', () => {
       expect(post).toEqual(mockPost);
     });
 
-    const req = httpMock.expectOne('http://localhost:8081/api/posts/1');
+    const req = httpMock.expectOne('http://localhost:8085/post/api/posts/1');
     expect(req.request.method).toBe('GET');
     req.flush(mockPost);
   });
@@ -55,7 +55,7 @@ describe('PostService', () => {
       expect(post).toEqual(newPost);
     });
 
-    const req = httpMock.expectOne('http://localhost:8081/api/posts');
+    const req = httpMock.expectOne('http://localhost:8085/post/api/posts');
     expect(req.request.method).toBe('POST');
     req.flush(newPost);
   });
@@ -67,7 +67,7 @@ describe('PostService', () => {
       expect(post).toEqual(updatedPost);
     });
 
-    const req = httpMock.expectOne('http://localhost:8081/api/posts/1');
+    const req = httpMock.expectOne('http://localhost:8085/post/api/posts/1');
     expect(req.request.method).toBe('PUT');
     req.flush(updatedPost);
   });
@@ -77,7 +77,7 @@ describe('PostService', () => {
       expect(response).toEqual(Object({  })); // Controleer op een leeg object
     });
   
-    const req = httpMock.expectOne('http://localhost:8081/api/posts/1');
+    const req = httpMock.expectOne('http://localhost:8085/post/api/posts/1');
     expect(req.request.method).toBe('DELETE');
     req.flush({}); // Stuur een leeg object als respons
   });

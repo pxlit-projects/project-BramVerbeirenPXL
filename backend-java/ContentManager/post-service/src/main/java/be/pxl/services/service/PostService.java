@@ -111,9 +111,16 @@ public class PostService implements IPostService{
         postRepository.save(updatedPost);
 
         String status = reviewRequest.isApproved() ? "goedgekeurd" : "afgewezen";
+        String emailMessage = reviewRequest.isApproved()
+                ? "Gefeliciteerd! Je post \"" + updatedPost.getTitle() + "\" is goedgekeurd."
+                : "Helaas is je post \"" + updatedPost.getTitle() + "\" afgekeurd met reden: \"" + reviewRequest.getRejectionComment() + "\"";
+
         NotificationRequest notificationRequest = NotificationRequest.builder()
-                .message("Post status aangepast: " + status)
-                .sender(updatedPost.getAuthor()).build();
+                .to(updatedPost.getAuthorEmail())  // Verzendadres van de auteur
+                .message(emailMessage)
+                .subject("Statusupdate voor je post: " + updatedPost.getTitle())
+                .sender("Post Review Service")
+                .build();
         notificationClient.sendNotification(notificationRequest);
 
         return updatedPost;
