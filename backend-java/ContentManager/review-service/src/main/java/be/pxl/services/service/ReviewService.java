@@ -6,7 +6,6 @@ import be.pxl.services.api.data.PostRequest;
 import be.pxl.services.api.data.ReviewRequest;
 import be.pxl.services.client.NotificationClient;
 import be.pxl.services.client.PostClient;
-import be.pxl.services.config.RabbitMQConfig;
 import be.pxl.services.domain.Post;
 import be.pxl.services.domain.Review;
 import be.pxl.services.repository.ReviewRepository;

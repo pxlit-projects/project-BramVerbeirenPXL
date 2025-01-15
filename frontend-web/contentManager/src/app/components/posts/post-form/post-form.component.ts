@@ -29,7 +29,7 @@ export class PostFormComponent {
 
   submitPost(isDraft: boolean) {
     if (this.postForm.valid) {
-      const post = { ...this.postForm.value, draft: isDraft };
+      const post = { ...this.postForm.value, draft: isDraft, approved: false, rejectionComment: "" };
       this.postService.createPost(post).subscribe(() => {
         this.router.navigate(['/posts']);
       }, (error) => {

@@ -53,19 +53,24 @@ class ReviewServiceTest {
 
     @Test
     void approvePost_savesReviewAndSendsNotification() {
-        PostRequest postRequest = PostRequest.builder().approved(true).build();
+        // Arrange
+        ReviewRequest reviewRequest = ReviewRequest.builder().build();  // Zorg dat dit niet null is
         Review review = Review.builder().postId(1L).approved(true).build();
 
         when(reviewRepository.save(any(Review.class))).thenReturn(review);
 
-        Review result = reviewService.approvePost(1L, any(ReviewRequest.class));
+        // Act
+        Review result = reviewService.approvePost(1L, reviewRequest);  // reviewRequest toegevoegd als parameter
 
-        verify(postClient).updatePostStatus(eq(1L), any(ReviewRequest.class));
+        // Assert
+        verify(postClient).updatePostStatus(eq(1L), eq(reviewRequest));  // Controleren dat het hetzelfde object is
         verify(notificationClient).sendNotification(any(NotificationRequest.class));
 
         assertTrue(result.isApproved());
         assertEquals(1L, result.getPostId());
     }
+
+
 
     @Test
     void rejectPost_savesRejectedReviewAndSendsNotification() {

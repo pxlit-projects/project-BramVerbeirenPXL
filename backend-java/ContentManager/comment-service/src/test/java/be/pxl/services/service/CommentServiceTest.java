@@ -29,8 +29,6 @@ class CommentServiceTest {
     @Mock
     private NotificationClient notificationClient;
 
-    @Mock
-    private RabbitTemplate rabbitTemplate;
 
     @InjectMocks
     private CommentService commentService;
@@ -69,7 +67,6 @@ class CommentServiceTest {
         when(commentRepository.save(any(Comment.class))).thenReturn(comment);
 
         doNothing().when(notificationClient).sendNotification(any(NotificationRequest.class));
-        doNothing().when(rabbitTemplate).convertAndSend(eq(RabbitMQConfig.COMMENT_QUEUE), anyString());
 
         Comment result = commentService.addComment(1L, commentRequest);
 
@@ -77,7 +74,6 @@ class CommentServiceTest {
         assertThat(result.getContent()).isEqualTo("Content");
 
         verify(notificationClient).sendNotification(any(NotificationRequest.class));
-        verify(rabbitTemplate).convertAndSend(eq(RabbitMQConfig.COMMENT_QUEUE), anyString());
         verify(commentRepository).save(any(Comment.class));
     }
 
@@ -150,7 +146,6 @@ class CommentServiceTest {
 
         when(commentRepository.save(any(Comment.class))).thenReturn(comment);
         doNothing().when(notificationClient).sendNotification(any(NotificationRequest.class));
-        doNothing().when(rabbitTemplate).convertAndSend(eq(RabbitMQConfig.COMMENT_QUEUE), anyString());
 
         Comment result = commentService.addComment(1L, commentRequest);
 
@@ -158,6 +153,5 @@ class CommentServiceTest {
         assertThat(result.getContent()).isEqualTo("Test Content");
 
         verify(notificationClient, times(1)).sendNotification(any(NotificationRequest.class));
-        verify(rabbitTemplate, times(1)).convertAndSend(eq(RabbitMQConfig.COMMENT_QUEUE), anyString());
     }
 }

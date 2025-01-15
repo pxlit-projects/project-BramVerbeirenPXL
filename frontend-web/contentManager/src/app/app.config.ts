@@ -8,7 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './guards/auth.interceptor';
 
 
 import { routes } from './app.routes';
@@ -25,6 +26,11 @@ export const appConfig: ApplicationConfig = {
       RouterModule,
       FormsModule,
       MatDialogModule
-    )
+    ),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ]
 };

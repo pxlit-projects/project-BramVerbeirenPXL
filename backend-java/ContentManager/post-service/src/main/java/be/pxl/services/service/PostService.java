@@ -4,7 +4,6 @@ import be.pxl.services.api.data.NotificationRequest;
 import be.pxl.services.api.data.PostRequest;
 import be.pxl.services.api.data.ReviewRequest;
 import be.pxl.services.client.NotificationClient;
-import be.pxl.services.config.RabbitMQConfig;
 import be.pxl.services.domain.Post;
 import be.pxl.services.domain.specification.PostSpecification;
 import be.pxl.services.repository.PostRepository;
@@ -37,9 +36,15 @@ public class PostService implements IPostService{
                 .orElseThrow(() -> new RuntimeException("Post not found"));
     }
     public Post createPost(PostRequest postRequest) {
+        if(postRequest.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Title must not be empty");
+        } else if (postRequest.getAuthor() == null || postRequest.getAuthor().isEmpty() ) {
+            throw new IllegalArgumentException("Author must not be empty");
+        }
         Post post = Post.builder()
                 .title(postRequest.getTitle())
                 .content(postRequest.getContent())
+                .authorEmail(postRequest.getAuthorEmail())
                 .author(postRequest.getAuthor())
                 .draft(postRequest.isDraft())
                 .createdDate(LocalDate.now()).build();
@@ -53,9 +58,15 @@ public class PostService implements IPostService{
     }
 
     public Post saveDraft(PostRequest postRequest) {
+        if(postRequest.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("Title must not be empty");
+        } else if (postRequest.getAuthor() == null || postRequest.getAuthor().isEmpty() ) {
+            throw new IllegalArgumentException("Author must not be null");
+        }
         Post post = Post.builder()
                 .title(postRequest.getTitle())
                 .content(postRequest.getContent())
+                .authorEmail(postRequest.getAuthorEmail())
                 .author(postRequest.getAuthor())
                 .createdDate(LocalDate.now()).build();
         post.setDraft(true);
