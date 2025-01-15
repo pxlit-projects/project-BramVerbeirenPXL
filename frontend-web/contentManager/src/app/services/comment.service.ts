@@ -20,7 +20,7 @@ export class CommentService {
   }
 
   updateComment(commentId: number, content: string): Observable<Comment> {
-    return this.http.put<Comment>(`${this.baseUrl}/${commentId}`, { content });
+    return this.http.put<Comment>(`${this.baseUrl}/${commentId}`, content );
   }
 
   deleteComment(commentId: number): Observable<void> {
